@@ -19,7 +19,7 @@ import ValueSelectorMenu from './value_selector_menu';
 
 import CELHelpModal from '../../modals/cel_help/cel_help_modal';
 import TestResultsModal from '../../modals/policy_test/test_modal';
-import {AddAttributeButton, TestButton, HelpText, OPERATOR_CONFIG, OPERATOR_LABELS, OperatorLabel, isMultiValueOperator} from '../shared';
+import {AddAttributeButton, TestButton, HelpText, OPERATOR_CONFIG, OPERATOR_LABELS, OperatorLabel, isMultiValueOperator, celPathFor, isNativeField, isNativeBooleanField, allowedOperatorLabelsForField, defaultOperatorForField} from '../shared';
 
 import './table_editor.scss';
 
@@ -28,6 +28,8 @@ export function celStringLiteral(val: string): string {
 }
 
 export function rowToCEL(row: TableRow): string {
+    const isNative = row.isNative === true;
+
     // A fully-masked row has no visible values on the client side.  Emit a
     // placeholder "in []" expression so the backend merge can locate this
     // condition by attribute and re-inject the hidden values before persisting.
@@ -35,11 +37,23 @@ export function rowToCEL(row: TableRow): string {
     // the empty expression would be sent to the server, and buildCELFromConditions
     // would return "true" — making the policy wide-open (security regression).
     if (row.hasMaskedValues && row.values.length === 0) {
-        return `user.attributes.${row.attribute} in []`;
+        return `${celPathFor(row.attribute, isNative)} in []`;
     }
 
-    const attributeExpr = `user.attributes.${row.attribute}`;
+    const attributeExpr = celPathFor(row.attribute, isNative);
     const config = OPERATOR_CONFIG[row.operator];
+
+    // native_method (e.g. youngerThanDays) takes a verbatim, unquoted argument.
+    if (config?.type === 'native_method') {
+        const arg = row.values.length > 0 ? row.values[0] : '';
+        return `${attributeExpr}.${config.celOp}(${arg})`;
+    }
+
+    // Native boolean attributes compare against an unquoted true/false literal.
+    if (row.isBoolean && config?.type === 'comparison') {
+        const value = row.values.length > 0 ? row.values[0] : 'false';
+        return `${attributeExpr} ${config.celOp} ${value}`;
+    }
 
     if (!config) {
         if (row.attribute_type === 'multiselect') {
@@ -132,7 +146,7 @@ export const findFirstAvailableAttributeFromList = (
         const isSynced = attr.attrs?.ldap || attr.attrs?.saml;
         const isAdminManaged = attr.attrs?.managed === 'admin';
         const isProtected = attr.attrs?.protected;
-        const allowed = isSynced || isAdminManaged || isProtected || enableUserManagedAttributes;
+        const allowed = isNativeField(attr) || isSynced || isAdminManaged || isProtected || enableUserManagedAttributes;
         return isValidCELIdentifier && allowed;
     });
 };
@@ -148,10 +162,15 @@ export const parseExpression = (visualAST: AccessControlVisualAST): TableRow[] =
 
     for (const node of visualAST.conditions) {
         let attr;
+        let isNative = false;
 
-        // Extracts the attribute name, removing the 'user.attributes.' prefix.
+        // Custom profile attributes are `user.attributes.<name>`; native user
+        // attributes are the single-segment `user.<name>` form.
         if (node.attribute.startsWith('user.attributes.')) {
             attr = node.attribute.slice(16); // Length of 'user.attributes.'
+        } else if (node.attribute.startsWith('user.')) {
+            attr = node.attribute.slice(5); // Length of 'user.'
+            isNative = true;
         } else {
             throw new Error(`Unknown attribute: ${node.attribute}`);
         }
@@ -162,22 +181,41 @@ export const parseExpression = (visualAST: AccessControlVisualAST): TableRow[] =
             op = OperatorLabel.IS;
         }
 
-        let values;
+        // The visual AST carries typed values: native booleans arrive as JS
+        // booleans and youngerThanDays arguments as numbers. Normalize to the
+        // string form the table rows store, and remember booleans so rowToCEL
+        // re-emits them unquoted.
+        let isBoolean = false;
+        let values: string[];
         if (Array.isArray(node.value)) {
-            values = node.value;
+            values = node.value.map((v) => String(v));
+        } else if (typeof node.value === 'boolean') {
+            isBoolean = true;
+            values = [String(node.value)];
         } else if (node.value !== null && node.value !== undefined) {
-            values = [node.value];
+            values = [String(node.value)];
         } else {
             values = [];
         }
 
-        tableRows.push({
+        const tableRow: TableRow = {
             attribute: attr,
             operator: op,
             values,
             attribute_type: node.attribute_type,
             hasMaskedValues: node.has_masked_values === true,
-        });
+        };
+
+        // Only set the native flags when they apply so custom-profile-attribute
+        // rows keep their original shape.
+        if (isNative) {
+            tableRow.isNative = true;
+        }
+        if (isBoolean) {
+            tableRow.isBoolean = true;
+        }
+
+        tableRows.push(tableRow);
     }
 
     return tableRows;
@@ -314,10 +352,12 @@ function TableEditor({
         setRows((currentRows) => {
             const newRow: TableRow = {
                 attribute: firstAvailableAttribute.name,
-                operator: firstAvailableAttribute.type === 'multiselect' ? OperatorLabel.HAS_ANY_OF : OperatorLabel.IS,
+                operator: defaultOperatorForField(firstAvailableAttribute),
                 values: [],
                 attribute_type: firstAvailableAttribute.type || '',
                 hasMaskedValues: false,
+                isNative: isNativeField(firstAvailableAttribute),
+                isBoolean: isNativeBooleanField(firstAvailableAttribute),
             };
             const newRows = [...currentRows, newRow];
             updateExpression(newRows); // Ensure expression is updated immediately
@@ -351,13 +391,24 @@ function TableEditor({
 
                 const newAttributeObj = userAttributes.find((attr) => attr.name === attribute);
                 newRows[index].attribute_type = newAttributeObj?.type || '';
+                newRows[index].isNative = isNativeField(newAttributeObj);
+                newRows[index].isBoolean = isNativeBooleanField(newAttributeObj);
 
-                const isMultiselect = newAttributeObj?.type === 'multiselect';
-                const wasMultiselect = currentRows[index].attribute_type === 'multiselect';
-                if (isMultiselect && !wasMultiselect) {
-                    newRows[index].operator = OperatorLabel.HAS_ANY_OF;
-                } else if (!isMultiselect && wasMultiselect) {
-                    newRows[index].operator = OperatorLabel.IS;
+                // Reset the operator to one valid for the new attribute. This
+                // matters when switching between attribute kinds with disjoint
+                // operator sets (e.g. a CPA text field -> native createat, whose
+                // only operator is "younger than").
+                const allowedOperators = allowedOperatorLabelsForField(newAttributeObj);
+                if (allowedOperators && !allowedOperators.includes(newRows[index].operator)) {
+                    newRows[index].operator = defaultOperatorForField(newAttributeObj);
+                } else if (!allowedOperators) {
+                    const isMultiselect = newAttributeObj?.type === 'multiselect';
+                    const wasMultiselect = currentRows[index].attribute_type === 'multiselect';
+                    if (isMultiselect && !wasMultiselect) {
+                        newRows[index].operator = OperatorLabel.HAS_ANY_OF;
+                    } else if (!isMultiselect && wasMultiselect) {
+                        newRows[index].operator = OperatorLabel.IS;
+                    }
                 }
 
                 // Values were cleared — row is in an intermediate editing state.
@@ -453,53 +504,59 @@ function TableEditor({
                             </td>
                         </tr>
                     ) : (
-                        rows.map((row, index) => (
-                            <tr
-                                key={index}
-                                className='table-editor__row'
-                            >
-                                <td className='table-editor__cell'>
-                                    <AttributeSelectorMenu
-                                        currentAttribute={row.attribute}
-                                        availableAttributes={userAttributes}
-                                        disabled={disabled || row.hasMaskedValues}
-                                        onChange={(attribute) => updateRowAttribute(index, attribute)}
-                                        menuId={`attribute-selector-menu-${index}`}
-                                        buttonId={`attribute-selector-button-${index}`}
-                                        autoOpen={index === autoOpenAttributeMenuForRow}
-                                        onMenuOpened={() => setAutoOpenAttributeMenuForRow(null)}
-                                        enableUserManagedAttributes={enableUserManagedAttributes}
-                                    />
-                                </td>
-                                <td className='table-editor__cell'>
-                                    <OperatorSelectorMenu
-                                        currentOperator={row.operator}
-                                        disabled={disabled || row.hasMaskedValues}
-                                        onChange={(operator) => updateRowOperator(index, operator)}
-                                        attributeType={userAttributes.find((attr) => attr.name === row.attribute)?.type}
-                                    />
-                                </td>
-                                <td className='table-editor__cell'>
-                                    <ValueSelectorMenu
-                                        row={row}
-                                        disabled={disabled || row.hasMaskedValues}
-                                        updateValues={(values: string[]) => updateRowValues(index, values)}
-                                        options={row.attribute ? userAttributes.find((attr) => attr.name === row.attribute)?.attrs?.options || [] : []}
-                                    />
-                                </td>
-                                <td className='table-editor__cell-actions'>
-                                    <button
-                                        type='button'
-                                        className='table-editor__row-remove'
-                                        onClick={() => requestRemoveRow(index)}
-                                        disabled={disabled || row.hasMaskedValues}
-                                        aria-label={formatMessage({id: 'admin.access_control.table_editor.remove_row', defaultMessage: 'Remove row'})}
-                                    >
-                                        <i className='icon icon-trash-can-outline'/>
-                                    </button>
-                                </td>
-                            </tr>
-                        ))
+                        rows.map((row, index) => {
+                            const field = userAttributes.find((attr) => attr.name === row.attribute);
+                            const isYoungerThan = row.operator === OperatorLabel.YOUNGER_THAN;
+                            return (
+                                <tr
+                                    key={index}
+                                    className='table-editor__row'
+                                >
+                                    <td className='table-editor__cell'>
+                                        <AttributeSelectorMenu
+                                            currentAttribute={row.attribute}
+                                            availableAttributes={userAttributes}
+                                            disabled={disabled || row.hasMaskedValues}
+                                            onChange={(attribute) => updateRowAttribute(index, attribute)}
+                                            menuId={`attribute-selector-menu-${index}`}
+                                            buttonId={`attribute-selector-button-${index}`}
+                                            autoOpen={index === autoOpenAttributeMenuForRow}
+                                            onMenuOpened={() => setAutoOpenAttributeMenuForRow(null)}
+                                            enableUserManagedAttributes={enableUserManagedAttributes}
+                                        />
+                                    </td>
+                                    <td className='table-editor__cell'>
+                                        <OperatorSelectorMenu
+                                            currentOperator={row.operator}
+                                            disabled={disabled || row.hasMaskedValues}
+                                            onChange={(operator) => updateRowOperator(index, operator)}
+                                            attributeType={field?.type}
+                                            allowedOperators={allowedOperatorLabelsForField(field)}
+                                        />
+                                    </td>
+                                    <td className='table-editor__cell'>
+                                        <ValueSelectorMenu
+                                            row={row}
+                                            disabled={disabled || row.hasMaskedValues}
+                                            updateValues={(values: string[]) => updateRowValues(index, values)}
+                                            options={row.attribute ? field?.attrs?.options || [] : []}
+                                            placeholder={isYoungerThan ? formatMessage({id: 'admin.access_control.table_editor.value.days_placeholder', defaultMessage: 'Number of days'}) : undefined}
+                                        />
+                                    </td>
+                                    <td className='table-editor__cell-actions'>
+                                        <button
+                                            type='button'
+                                            className='table-editor__row-remove'
+                                            onClick={() => requestRemoveRow(index)}
+                                            disabled={disabled || row.hasMaskedValues}
+                                            aria-label={formatMessage({id: 'admin.access_control.table_editor.remove_row', defaultMessage: 'Remove row'})}
+                                        >
+                                            <i className='icon icon-trash-can-outline'/>
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })
                     )}
                 </tbody>
                 <tfoot>

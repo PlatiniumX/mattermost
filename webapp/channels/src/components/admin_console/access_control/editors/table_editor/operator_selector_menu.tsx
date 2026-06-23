@@ -7,7 +7,7 @@ import React, {useMemo, useState} from 'react';
 import type {MessageDescriptor} from 'react-intl';
 import {defineMessage, FormattedMessage, useIntl} from 'react-intl';
 
-import {CheckAllIcon, CheckIcon, ElementOfIcon, EqualIcon, FunctionIcon, NotEqualVariantIcon} from '@mattermost/compass-icons/components';
+import {CheckAllIcon, CheckIcon, ClockOutlineIcon, ElementOfIcon, EqualIcon, FunctionIcon, NotEqualVariantIcon} from '@mattermost/compass-icons/components';
 import type IconProps from '@mattermost/compass-icons/components/props';
 import type {IDMappedObjects} from '@mattermost/types/utilities';
 
@@ -16,14 +16,21 @@ import * as Menu from 'components/menu';
 import {OperatorLabel, isMultiselectOperator} from '../shared';
 import './selector_menus.scss';
 
+// Operators only offered when a native attribute advertises them.
+const NATIVE_ONLY_OPERATORS = new Set<string>([OperatorLabel.YOUNGER_THAN]);
+
 interface OperatorSelectorProps {
     currentOperator: string;
     disabled: boolean;
     onChange: (operator: string) => void;
     attributeType?: string;
+
+    // When provided (native attributes), the menu is restricted to exactly these
+    // operator labels and the multiselect heuristic is bypassed.
+    allowedOperators?: string[];
 }
 
-const OperatorSelectorMenu = ({currentOperator, disabled, onChange, attributeType}: OperatorSelectorProps) => {
+const OperatorSelectorMenu = ({currentOperator, disabled, onChange, attributeType, allowedOperators}: OperatorSelectorProps) => {
     const {formatMessage} = useIntl();
     const [filter, setFilter] = useState('');
 
@@ -44,16 +51,27 @@ const OperatorSelectorMenu = ({currentOperator, disabled, onChange, attributeTyp
 
     const filteredOperators = useMemo(() => {
         return Object.values(OPERATOR_DESCRIPTORS).filter((desc) => {
-            if (attributeType === 'multiselect' && !isMultiselectOperator(desc.id)) {
-                return false;
-            }
-            if (attributeType !== 'multiselect' && isMultiselectOperator(desc.id)) {
-                return false;
+            if (allowedOperators) {
+                if (!allowedOperators.includes(desc.id)) {
+                    return false;
+                }
+            } else {
+                // Native-only operators (e.g. "younger than") never appear unless a
+                // native attribute explicitly advertises them via allowedOperators.
+                if (NATIVE_ONLY_OPERATORS.has(desc.id)) {
+                    return false;
+                }
+                if (attributeType === 'multiselect' && !isMultiselectOperator(desc.id)) {
+                    return false;
+                }
+                if (attributeType !== 'multiselect' && isMultiselectOperator(desc.id)) {
+                    return false;
+                }
             }
             const label = formatMessage(desc.label);
             return label.toLowerCase().includes(filter.toLowerCase());
         });
-    }, [filter, formatMessage, attributeType]);
+    }, [filter, formatMessage, attributeType, allowedOperators]);
 
     return (
         <Menu.Container
@@ -193,6 +211,14 @@ const OPERATOR_DESCRIPTORS: IDMappedObjects<OperatorDescriptor> = {
         label: defineMessage({
             id: 'admin.access_control.table_editor.operator.contains',
             defaultMessage: 'contains',
+        }),
+    },
+    [OperatorLabel.YOUNGER_THAN]: {
+        id: OperatorLabel.YOUNGER_THAN,
+        icon: ClockOutlineIcon,
+        label: defineMessage({
+            id: 'admin.access_control.table_editor.operator.younger_than',
+            defaultMessage: 'younger than',
         }),
     },
 };
