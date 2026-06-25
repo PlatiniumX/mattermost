@@ -1,0 +1,10 @@
+# Build context'i küçük tut. .git KASITLI olarak hariç tutulmadı (BUILD_HASH için gerekli).
+**/node_modules
+webapp/**/dist
+webapp/.parcel-cache
+server/bin
+server/dist
+**/*.log
+e2e-tests
+.vscode
+.idea
