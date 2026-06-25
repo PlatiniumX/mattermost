@@ -41,8 +41,11 @@ COPY . .
 COPY --from=webapp /mm/webapp/channels/dist ./webapp/channels/dist
 
 WORKDIR /mm/server
-# Go binary'lerini derle (build-client'ı tetiklemeden — webapp zaten hazır)
-RUN make build-linux-amd64 BUILD_NUMBER=docker
+# Go binary'lerini derle (build-client'ı tetiklemeden — webapp zaten hazır).
+# bin/ dizini .dockerignore ile hariç tutulduğu için önce oluşturmamız gerekir;
+# aksi halde `go build -o bin ./...` "cannot write multiple packages to
+# non-directory" hatası verir.
+RUN mkdir -p bin && make build-linux-amd64 BUILD_NUMBER=docker
 # Paket dizinini topla (config, client, templates, i18n, fonts)
 RUN make package-prep BUILD_NUMBER=docker \
   && mkdir -p dist/mattermost/bin dist/mattermost/logs \
