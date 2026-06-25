@@ -1,0 +1,5 @@
+db user:postgres
+pw:2lAF5n23rzIfq7VypQNb6Np1sa7SuXC8VIvgOy9W65D1mhocjfDjwXn9BXW0ylma
+database:postgres
+
+postgres://postgres:2lAF5n23rzIfq7VypQNb6Np1sa7SuXC8VIvgOy9W65D1mhocjfDjwXn9BXW0ylma@31.97.77.180:5439/postgres

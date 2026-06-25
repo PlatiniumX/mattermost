@@ -16,6 +16,13 @@
 FROM node:24-bookworm AS webapp
 WORKDIR /mm/webapp
 
+# package-lock.json bazı bağımlılıkları git+ssh://git@github.com/... üzerinden
+# çekiyor (mattermost/marked, mattermost/react-bootstrap). Build container'ında
+# SSH anahtarı olmadığı için ssh clone başarısız olur (exit 255). Bu repo'lar
+# public olduğundan git'i ssh yerine anonim HTTPS kullanmaya zorluyoruz.
+RUN git config --global url."https://github.com/".insteadOf "ssh://git@github.com/" \
+ && git config --global url."https://github.com/".insteadOf "git@github.com:"
+
 # Tüm webapp kaynağını kopyala (postinstall platform workspace'lerini derlediği
 # için bağımlılık kurulumu kaynağa ihtiyaç duyar — bu yüzden hepsini birlikte kopyalıyoruz)
 COPY webapp ./
