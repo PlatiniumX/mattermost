@@ -73,7 +73,7 @@ export default function AboutBuildModalCloud(props: Props) {
                 >
                     <FormattedMessage
                         id='about.title'
-                        values={{appTitle: config.SiteName || 'Mattermost'}}
+                        values={{appTitle: config.SiteName || 'BetGo Office'}}
                         defaultMessage='About {appTitle}'
                     />
                 </Modal.Title>

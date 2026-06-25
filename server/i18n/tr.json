@@ -85,7 +85,7 @@
   },
   {
     "id": "api.admin.test_email.body",
-    "translation": "Mattermost e-posta ayarları doğru görünüyor!"
+    "translation": "BetGo Office e-posta ayarları doğru görünüyor!"
   },
   {
     "id": "api.admin.test_email.missing_server",
@@ -97,7 +97,7 @@
   },
   {
     "id": "api.admin.test_email.subject",
-    "translation": "Mattermost - E-posta ayarları sınanıyor"
+    "translation": "BetGo Office - E-posta ayarları sınanıyor"
   },
   {
     "id": "api.admin.test_s3.missing_s3_bucket",
@@ -341,7 +341,7 @@
   },
   {
     "id": "api.command.invite_people.desc",
-    "translation": "Mattermost takımınıza bir e-posta daveti gönderir"
+    "translation": "BetGo Office takımınıza bir e-posta daveti gönderir"
   },
   {
     "id": "api.command.invite_people.email_invitations_off",
@@ -616,7 +616,7 @@
   },
   {
     "id": "api.command_help.desc",
-    "translation": "Mattermost yardım iletisini görüntüle"
+    "translation": "BetGo Office yardım iletisini görüntüle"
   },
   {
     "id": "api.command_help.name",
@@ -723,7 +723,7 @@
   },
   {
     "id": "api.command_logout.desc",
-    "translation": "Mattermost oturumunu kapatır"
+    "translation": "BetGo Office oturumunu kapatır"
   },
   {
     "id": "api.command_logout.name",
@@ -1496,7 +1496,7 @@
   },
   {
     "id": "api.slackimport.slack_add_channels.merge",
-    "translation": "{{.DisplayName}} Slack kanalı zaten etkin bir Mattermost kanalı olarak var. İki kanal birleştirilecek.\n"
+    "translation": "{{.DisplayName}} Slack kanalı zaten etkin bir BetGo Office kanalı olarak var. İki kanal birleştirilecek.\n"
   },
   {
     "id": "api.slackimport.slack_add_users.created",
@@ -1504,11 +1504,11 @@
   },
   {
     "id": "api.slackimport.slack_add_users.merge_existing",
-    "translation": "E-posta adresi {{.Email}} olan Slack kullanıcısı aynı e-posta adresini kullanan {{.Username}} Mattermost kullanıcısı ile birleştirildi.\n"
+    "translation": "E-posta adresi {{.Email}} olan Slack kullanıcısı aynı e-posta adresini kullanan {{.Username}} BetGo Office kullanıcısı ile birleştirildi.\n"
   },
   {
     "id": "api.slackimport.slack_add_users.merge_existing_failed",
-    "translation": "E-posta adresi {{.Email}} olan Slack kullanıcısı aynı e-posta adresini kullanan {{.Username}} Mattermost kullanıcısı birleştirildi ancak kullanıcı ilgili takıma eklenemedi.\n"
+    "translation": "E-posta adresi {{.Email}} olan Slack kullanıcısı aynı e-posta adresini kullanan {{.Username}} BetGo Office kullanıcısı birleştirildi ancak kullanıcı ilgili takıma eklenemedi.\n"
   },
   {
     "id": "api.slackimport.slack_add_users.missing_email_address",
@@ -1520,7 +1520,7 @@
   },
   {
     "id": "api.slackimport.slack_import.log",
-    "translation": "Mattermost Slack içe aktarma günlüğü\n"
+    "translation": "BetGo Office Slack içe aktarma günlüğü\n"
   },
   {
     "id": "api.slackimport.slack_import.note1",
@@ -1828,7 +1828,7 @@
   },
   {
     "id": "api.templates.post_body.button",
-    "translation": "Mattermost içinde yanıtla"
+    "translation": "BetGo Office içinde yanıtla"
   },
   {
     "id": "api.templates.reset_body.button",
@@ -1888,7 +1888,7 @@
   },
   {
     "id": "api.templates.verify_body.info",
-    "translation": "Bu e-posta adresi ile açılmış bir Mattermost hesabı var."
+    "translation": "Bu e-posta adresi ile açılmış bir BetGo Office hesabı var."
   },
   {
     "id": "api.templates.verify_body.title",
@@ -1908,7 +1908,7 @@
   },
   {
     "id": "api.templates.welcome_body.info",
-    "translation": "Bu e-posta adresi ile açılmış bir Mattermost hesabı var."
+    "translation": "Bu e-posta adresi ile açılmış bir BetGo Office hesabı var."
   },
   {
     "id": "api.templates.welcome_body.title",
@@ -3048,7 +3048,7 @@
   },
   {
     "id": "ent.elasticsearch.test_config.license.error",
-    "translation": "Mattermost lisansınızda dizin kullanan arama özelliği bulunmuyor."
+    "translation": "BetGo Office lisansınızda dizin kullanan arama özelliği bulunmuyor."
   },
   {
     "id": "ent.elasticsearch.test_config.reenter_password",
@@ -3092,7 +3092,7 @@
   },
   {
     "id": "ent.ldap.do_login.user_filtered.app_error",
-    "translation": "AD/LDAP hesabınızın bu Mattermost sunucusunu kullanma izni yok. Lütfen sistem yöneticinizden AD/LDAP kullanıcı süzgecini denetlemesini isteyin."
+    "translation": "AD/LDAP hesabınızın bu BetGo Office sunucusunu kullanma izni yok. Lütfen sistem yöneticinizden AD/LDAP kullanıcı süzgecini denetlemesini isteyin."
   },
   {
     "id": "ent.ldap.do_login.user_not_registered.app_error",
@@ -3112,7 +3112,7 @@
   },
   {
     "id": "ent.ldap.syncronize.search_failure.app_error",
-    "translation": "AD/LDAP üzerinde kullanıcılar aranamadı. Mattermost sunucunuzun AD/LDAP sunucunuza bağlanabildiğinden emin olun."
+    "translation": "AD/LDAP üzerinde kullanıcılar aranamadı. BetGo Office sunucunuzun AD/LDAP sunucunuza bağlanabildiğinden emin olun."
   },
   {
     "id": "ent.ldap.validate_filter.app_error",
@@ -3156,7 +3156,7 @@
   },
   {
     "id": "ent.migration.migratetosaml.username_already_used_by_other_user",
-    "translation": "Bu kullanıcı adı başka bir Mattermost kullanıcısı tarafından kullanılıyor."
+    "translation": "Bu kullanıcı adı başka bir BetGo Office kullanıcısı tarafından kullanılıyor."
   },
   {
     "id": "ent.saml.attribute.app_error",
@@ -3240,7 +3240,7 @@
   },
   {
     "id": "mattermost.bulletin.subject",
-    "translation": "Mattermost güvenlik duyurusu"
+    "translation": "BetGo Office güvenlik duyurusu"
   },
   {
     "id": "mfa.activate.bad_token.app_error",
@@ -4380,7 +4380,7 @@
   },
   {
     "id": "oauth.gitlab.tos.error",
-    "translation": "GitLab hizmet koşulları güncellendi. Lütfen {{.URL}} adresine giderek yeni hizmet koşullarını onayladıktan sonra Mattermost oturumunu yeniden açmayı deneyin."
+    "translation": "GitLab hizmet koşulları güncellendi. Lütfen {{.URL}} adresine giderek yeni hizmet koşullarını onayladıktan sonra BetGo Office oturumunu yeniden açmayı deneyin."
   },
   {
     "id": "plugin.api.update_user_status.bad_status",
@@ -4848,7 +4848,7 @@
   },
   {
     "id": "api.bot.teams_channels.add_message_mobile",
-    "translation": "Lütfen beni etkileşimde bulunmamı istediğiniz takım ve kanallara ekleyin. Bu işlemi tarayıcı ya da Mattermost bilgisayar uygulaması üzerinden yapabilirsiniz."
+    "translation": "Lütfen beni etkileşimde bulunmamı istediğiniz takım ve kanallara ekleyin. Bu işlemi tarayıcı ya da BetGo Office bilgisayar uygulaması üzerinden yapabilirsiniz."
   },
   {
     "id": "api.channel.channel_member_counts_by_group.license.error",
@@ -5116,11 +5116,11 @@
   },
   {
     "id": "web.error.unsupported_browser.download_app_or_upgrade_browser",
-    "translation": "Mattermost uygulamasını indirin ya da daha iyi bir deneyim elde etmek için desteklenen bir tarayıcı kullanın."
+    "translation": "BetGo Office uygulamasını indirin ya da daha iyi bir deneyim elde etmek için desteklenen bir tarayıcı kullanın."
   },
   {
     "id": "web.error.unsupported_browser.no_longer_support",
-    "translation": "Bu tarayıcı artık Mattermost tarafından desteklenmiyor"
+    "translation": "Bu tarayıcı artık BetGo Office tarafından desteklenmiyor"
   },
   {
     "id": "api.push_notifications.session.expired",
@@ -5512,7 +5512,7 @@
   },
   {
     "id": "web.error.unsupported_browser.no_longer_support_version",
-    "translation": "Kullandığınız tarayıcının bu sürümü artık Mattermost tarafından desteklenmiyor"
+    "translation": "Kullandığınız tarayıcının bu sürümü artık BetGo Office tarafından desteklenmiyor"
   },
   {
     "id": "web.error.unsupported_browser.open_system_browser.edge",
@@ -5600,7 +5600,7 @@
   },
   {
     "id": "api.license.request-trial.bad-request.terms-not-accepted",
-    "translation": "Lisans isteğinde bulunmak için Mattermost yazılım değerlendirme sözleşmesi ve kişisel verilerin gizliliği ilkesi içeriklerini kabul etmelisiniz."
+    "translation": "Lisans isteğinde bulunmak için BetGo Office yazılım değerlendirme sözleşmesi ve kişisel verilerin gizliliği ilkesi içeriklerini kabul etmelisiniz."
   },
   {
     "id": "app.channel.create_initial_sidebar_categories.internal_error",
@@ -6600,43 +6600,43 @@
   },
   {
     "id": "api.upgrade_to_enterprise_status.signature.app_error",
-    "translation": "Mattermost Enterprise üst tarifesine geçilemedi. İndirilen dosyanın sayısal imzası doğrulanamadı."
+    "translation": "BetGo Office Enterprise üst tarifesine geçilemedi. İndirilen dosyanın sayısal imzası doğrulanamadı."
   },
   {
     "id": "api.upgrade_to_enterprise_status.app_error",
-    "translation": "Mattermost Enterprise üst tarifesine geçilemedi."
+    "translation": "BetGo Office Enterprise üst tarifesine geçilemedi."
   },
   {
     "id": "api.upgrade_to_enterprise.system_not_supported.app_error",
-    "translation": "Mattermost Enterprise üst tarifesine geçilemedi. Bu özellik yalnızca x86-64 mimarisine sahip Linux sistemleri üzerinde kullanılabilir."
+    "translation": "BetGo Office Enterprise üst tarifesine geçilemedi. Bu özellik yalnızca x86-64 mimarisine sahip Linux sistemleri üzerinde kullanılabilir."
   },
   {
     "id": "api.upgrade_to_enterprise.invalid-user.app_error",
-    "translation": "Mattermost Enterprise üst tarifesine geçilemedi. {{.MattermostUsername}} Mattermost sistem kullanıcısının gerekli program dosyalarına yazma izni yok. Bir sistem yöneticisi Mattermost uygulamasının kurulu olduğu sunucu üzerinde aşağıdaki komutları yürüterek dosya izinlerini güncelleyebilir:\n\n```\nchown {{.MattermostUsername}} \"{{.Path}}\"\n```\n\nDosya izinleri değiştirildikten sonra Mattermost üst tarifesine geçmeyi yeniden deneyin. Geçiş işlemi tamamlanıp sunucuyu yeniden başlatıldıktan sonra aşağıdaki komutun yürütülerek program dosyası izinlerini özgün duruma döndürülmesi gerektiğini unutmayın:\n\n```\nchown {{.FileUsername}} \"{{.Path}}\"\n```"
+    "translation": "BetGo Office Enterprise üst tarifesine geçilemedi. {{.BetGo OfficeUsername}} BetGo Office sistem kullanıcısının gerekli program dosyalarına yazma izni yok. Bir sistem yöneticisi BetGo Office uygulamasının kurulu olduğu sunucu üzerinde aşağıdaki komutları yürüterek dosya izinlerini güncelleyebilir:\n\n```\nchown {{.BetGo OfficeUsername}} \"{{.Path}}\"\n```\n\nDosya izinleri değiştirildikten sonra BetGo Office üst tarifesine geçmeyi yeniden deneyin. Geçiş işlemi tamamlanıp sunucuyu yeniden başlatıldıktan sonra aşağıdaki komutun yürütülerek program dosyası izinlerini özgün duruma döndürülmesi gerektiğini unutmayın:\n\n```\nchown {{.FileUsername}} \"{{.Path}}\"\n```"
   },
   {
     "id": "api.upgrade_to_enterprise.invalid-user-and-permission.app_error",
-    "translation": "Mattermost Enterprise üst tarifesine geçilemedi. {{.MattermostUsername}} Mattermost sistem kullanıcısının gerekli program dosyalarına yazma izni yok. Bir sistem yöneticisi Mattermost uygulamasının kurulu olduğu sunucu üzerinde aşağıdaki komutları yürüterek dosya izinlerini güncelleyebilir:\n\n```\nchown {{.MattermostUsername}} \"{{.Path}}\"\nchmod +w \"{{.Path}}\"\n```\n\nDosya izinleri değiştirildikten sonra Mattermost üst tarifesine geçmeyi yeniden deneyin. Geçiş işlemini tamamlanıp sunucuyu yeniden başlatıldıktan sonra aşağıdaki komutun yürütülerek program dosyası izinlerini özgün duruma döndürülmesi gerektiğini unutmayın:\n\n```\nchown {{.FileUsername}} \"{{.Path}}\"\nchmod -w \"{{.Path}}\"\n```"
+    "translation": "BetGo Office Enterprise üst tarifesine geçilemedi. {{.BetGo OfficeUsername}} BetGo Office sistem kullanıcısının gerekli program dosyalarına yazma izni yok. Bir sistem yöneticisi BetGo Office uygulamasının kurulu olduğu sunucu üzerinde aşağıdaki komutları yürüterek dosya izinlerini güncelleyebilir:\n\n```\nchown {{.BetGo OfficeUsername}} \"{{.Path}}\"\nchmod +w \"{{.Path}}\"\n```\n\nDosya izinleri değiştirildikten sonra BetGo Office üst tarifesine geçmeyi yeniden deneyin. Geçiş işlemini tamamlanıp sunucuyu yeniden başlatıldıktan sonra aşağıdaki komutun yürütülerek program dosyası izinlerini özgün duruma döndürülmesi gerektiğini unutmayın:\n\n```\nchown {{.FileUsername}} \"{{.Path}}\"\nchmod -w \"{{.Path}}\"\n```"
   },
   {
     "id": "api.upgrade_to_enterprise.invalid-permission.app_error",
-    "translation": "Mattermost Enterprise üst tarifesine geçilemedi. {{.MattermostUsername}} Mattermost sistem kullanıcısının gerekli program dosyalarına yazma izni yok. Bir sistem yöneticisi Mattermost uygulamasının kurulu olduğu sunucu üzerinde aşağıdaki komutları yürüterek dosya izinlerini güncelleyebilir:\n\n```\nchmod +w \"{{.Path}}\"\n```\n\nDosya izinleri değiştirildikten sonra Mattermost üst tarifesine geçmeyi yeniden deneyin. Geçiş işlemini tamamlanıp sunucuyu yeniden başlatıldıktan sonra aşağıdaki komutun yürütülerek program dosyası izinlerini özgün duruma döndürülmesi gerektiğini unutmayın:\n\n```\nchmod -w \"{{.Path}}\"\n```"
+    "translation": "BetGo Office Enterprise üst tarifesine geçilemedi. {{.BetGo OfficeUsername}} BetGo Office sistem kullanıcısının gerekli program dosyalarına yazma izni yok. Bir sistem yöneticisi BetGo Office uygulamasının kurulu olduğu sunucu üzerinde aşağıdaki komutları yürüterek dosya izinlerini güncelleyebilir:\n\n```\nchmod +w \"{{.Path}}\"\n```\n\nDosya izinleri değiştirildikten sonra BetGo Office üst tarifesine geçmeyi yeniden deneyin. Geçiş işlemini tamamlanıp sunucuyu yeniden başlatıldıktan sonra aşağıdaki komutun yürütülerek program dosyası izinlerini özgün duruma döndürülmesi gerektiğini unutmayın:\n\n```\nchmod -w \"{{.Path}}\"\n```"
   },
   {
     "id": "api.upgrade_to_enterprise.generic_error.app_error",
-    "translation": "Mattermost Enterprise üst tarifesine geçilemedi."
+    "translation": "BetGo Office Enterprise üst tarifesine geçilemedi."
   },
   {
     "id": "api.upgrade_to_enterprise.app_error",
-    "translation": "Zaten bir Mattermost Enterprise üst tarifesine geçme işlemi yapılıyor."
+    "translation": "Zaten bir BetGo Office Enterprise üst tarifesine geçme işlemi yapılıyor."
   },
   {
     "id": "api.upgrade_to_enterprise.already-enterprise.app_error",
-    "translation": "Zaten Mattermost Enterprise üst tarifesini kullandığınız için tarife geçişi yapamazsınız."
+    "translation": "Zaten BetGo Office Enterprise üst tarifesini kullandığınız için tarife geçişi yapamazsınız."
   },
   {
     "id": "api.upgrade_to_enterprise.already-done.app_error",
-    "translation": "Zaten Mattermost Enterprise üst tarifesine geçmişsiniz. Lütfen geçiş işlemini tamamlamak için sunucuyu yeniden başlatın."
+    "translation": "Zaten BetGo Office Enterprise üst tarifesine geçmişsiniz. Lütfen geçiş işlemini tamamlamak için sunucuyu yeniden başlatın."
   },
   {
     "id": "api.system.update_notices.validating_failed",
@@ -7252,7 +7252,7 @@
   },
   {
     "id": "api.templates.email_footer_v2",
-    "translation": "© 2015 - {{ .CurrentYear }} Mattermost, Inc. 2100 Geng Road, Suite 210, Palo Alto, CA, 94303"
+    "translation": "© 2015 - {{ .CurrentYear }} BetGo Office, Inc. 2100 Geng Road, Suite 210, Palo Alto, CA, 94303"
   },
   {
     "id": "api.post.search_files.invalid_body.app_error",
@@ -7320,7 +7320,7 @@
   },
   {
     "id": "api.templates.invite_body_footer.title",
-    "translation": "Mattermost nedir?"
+    "translation": "BetGo Office nedir?"
   },
   {
     "id": "api.templates.invite_body_footer.learn_more",
@@ -7328,11 +7328,11 @@
   },
   {
     "id": "api.templates.invite_body_footer.info",
-    "translation": "Mattermost güvenli takım işbirliği sağlayan esnek ve açık kaynaklı bir iletişim platformudur."
+    "translation": "BetGo Office güvenli takım işbirliği sağlayan esnek ve açık kaynaklı bir iletişim platformudur."
   },
   {
     "id": "api.templates.invite_body.subTitle",
-    "translation": "Mattermost üzerinde takımınızla iş birliği yapmaya başlayın"
+    "translation": "BetGo Office üzerinde takımınızla iş birliği yapmaya başlayın"
   },
   {
     "id": "api.templates.cloud_welcome_email.title",
@@ -7376,11 +7376,11 @@
   },
   {
     "id": "api.templates.cloud_welcome_email.download_mm_info",
-    "translation": "Mattermost uygulamasını indir"
+    "translation": "BetGo Office uygulamasını indir"
   },
   {
     "id": "api.templates.cloud_welcome_email.button",
-    "translation": "Mattermost uygulamasını aç"
+    "translation": "BetGo Office uygulamasını aç"
   },
   {
     "id": "api.templates.cloud_welcome_email.app_market_place",
@@ -7440,7 +7440,7 @@
   },
   {
     "id": "api.command_remote.desc",
-    "translation": "Mattermost kopyaları arasında iletişim kurmak için uzak güvenli bağlantıları davet edin."
+    "translation": "BetGo Office kopyaları arasında iletişim kurmak için uzak güvenli bağlantıları davet edin."
   },
   {
     "id": "api.command_remote.decode_invitation.error",
@@ -7460,7 +7460,7 @@
   },
   {
     "id": "api.command_remote.accept.help",
-    "translation": "Bir dış Mattermost kopyasından gelen bir daveti kabul et"
+    "translation": "Bir dış BetGo Office kopyasından gelen bir daveti kabul et"
   },
   {
     "id": "api.command_remote.accept_invitation",
@@ -7472,7 +7472,7 @@
   },
   {
     "id": "api.command_share.invite_remote.help",
-    "translation": "Bir dış Mattermost kopyasını geçerli paylaşılmış kanala davet eder"
+    "translation": "Bir dış BetGo Office kopyasını geçerli paylaşılmış kanala davet eder"
   },
   {
     "id": "api.command_share.invitation_sent",
@@ -7496,7 +7496,7 @@
   },
   {
     "id": "api.command_share.desc",
-    "translation": "Geçerli kanalı bir dış Mattermost kopyası ile paylaşır."
+    "translation": "Geçerli kanalı bir dış BetGo Office kopyası ile paylaşır."
   },
   {
     "id": "api.command_share.could_not_uninvite.error",
@@ -7564,7 +7564,7 @@
   },
   {
     "id": "api.command_remote.invite_summary",
-    "translation": "Aşağıdaki şifreli (AES256 + Base64) veri yığınını parola ile dış Mattermost yöneticisine gönderin. `{{.Command}}` bölü komutunu kullanarak daveti kabul edebilir.\n\n```\n{{.Invitation}}\n```\n\n**Güvenli bağlantının sizin Mattermost kopyanıza ** {{.SiteURL}} adresi ile erişilebildiğinden emin olun"
+    "translation": "Aşağıdaki şifreli (AES256 + Base64) veri yığınını parola ile dış BetGo Office yöneticisine gönderin. `{{.Command}}` bölü komutunu kullanarak daveti kabul edebilir.\n\n```\n{{.Invitation}}\n```\n\n**Güvenli bağlantının sizin BetGo Office kopyanıza ** {{.SiteURL}} adresi ile erişilebildiğinden emin olun"
   },
   {
     "id": "api.command_remote.remote_add_remove.help",
@@ -7832,7 +7832,7 @@
   },
   {
     "id": "app.notification.footer.infoLogin",
-    "translation": "Mattermost oturumu aç"
+    "translation": "BetGo Office oturumu aç"
   },
   {
     "id": "app.notification.footer.info",
@@ -7887,7 +7887,7 @@
   },
   {
     "id": "api.email_batching.send_batched_email_notification.button",
-    "translation": "Mattermost uygulamasını aç"
+    "translation": "BetGo Office uygulamasını aç"
   },
   {
     "id": "api.oauth.click_redirect",
@@ -7955,11 +7955,11 @@
   },
   {
     "id": "api.templates.license_up_for_renewal_title",
-    "translation": "Mattermost lisansınızın yenilenme zamanı geldi"
+    "translation": "BetGo Office lisansınızın yenilenme zamanı geldi"
   },
   {
     "id": "api.templates.license_up_for_renewal_subtitle",
-    "translation": "<a href=\"{{.SiteURL}}\">{{.SiteName}}</a> için {{.SkuName}} lisansınızın süresi {{.Days}} sonra dolacak. Mattermost tarafından sunulan güvenli, görev kritik iş birliğinin tadını çıkardığınızı umarız."
+    "translation": "<a href=\"{{.SiteURL}}\">{{.SiteName}}</a> için {{.SkuName}} lisansınızın süresi {{.Days}} sonra dolacak. BetGo Office tarafından sunulan güvenli, görev kritik iş birliğinin tadını çıkardığınızı umarız."
   },
   {
     "id": "api.templates.license_up_for_renewal_subject",
@@ -8187,7 +8187,7 @@
   },
   {
     "id": "model.oauth.is_valid.mattermost_app_id.app_error",
-    "translation": "MattermostAppID en fazla 32 karakter uzunluğunda olabilir."
+    "translation": "BetGo OfficeAppID en fazla 32 karakter uzunluğunda olabilir."
   },
   {
     "id": "app.channel.get_file_count.app_error",
@@ -8311,7 +8311,7 @@
   },
   {
     "id": "api.command_help.success",
-    "translation": "Mattermost, sağladığı araçlar ile takımların güvenli iletişim, işbirliği ve birlikte çalışmasını sağlayan açık kaynaklı bir platformdur.\nMattermost üç temel araç sunar:\n\n**Kanallar** - Takımınızla toplu olarak ve üyeleriyle birebir iletişim kurabilirsiniz.\n**[Senaryolar](/playbooks)** - Yinelenen işlemlere özel yapılandırmalar oluşturarak öngörülebilir sonuçlar alabilirsiniz.\n\n[İlgili belgeler ve rehberler]({{.HelpLink}})"
+    "translation": "BetGo Office, sağladığı araçlar ile takımların güvenli iletişim, işbirliği ve birlikte çalışmasını sağlayan açık kaynaklı bir platformdur.\nBetGo Office üç temel araç sunar:\n\n**Kanallar** - Takımınızla toplu olarak ve üyeleriyle birebir iletişim kurabilirsiniz.\n**[Senaryolar](/playbooks)** - Yinelenen işlemlere özel yapılandırmalar oluşturarak öngörülebilir sonuçlar alabilirsiniz.\n\n[İlgili belgeler ve rehberler]({{.HelpLink}})"
   },
   {
     "id": "api.command_marketplace.unsupported.app_error",
@@ -8543,7 +8543,7 @@
   },
   {
     "id": "api.server.cws.needs_enterprise_edition",
-    "translation": "Bu hizmet yalnızca Mattermost Enterprise sürümüyle kullanılabilir"
+    "translation": "Bu hizmet yalnızca BetGo Office Enterprise sürümüyle kullanılabilir"
   },
   {
     "id": "app.oauth.remove_auth_data_by_client_id.app_error",
@@ -8987,7 +8987,7 @@
   },
   {
     "id": "api.config.update.elasticsearch.autocomplete_cannot_be_enabled_error",
-    "translation": "Kanal dizini şeması güncel olmadığı için kanal otomatik tamamlama özelliği açılamadı. Kanal dizininizi yeniden oluşturmanız önerilir. Ayrıntılı bilgi almak için Mattermost değişiklik günlüğüne bakın"
+    "translation": "Kanal dizini şeması güncel olmadığı için kanal otomatik tamamlama özelliği açılamadı. Kanal dizininizi yeniden oluşturmanız önerilir. Ayrıntılı bilgi almak için BetGo Office değişiklik günlüğüne bakın"
   },
   {
     "id": "api.context.outgoing_oauth_connection.create_connection.input_error",
@@ -9419,7 +9419,7 @@
   },
   {
     "id": "api.server.cws.disabled",
-    "translation": "Mattermost müşteri portalı ile etkileşim kurma özelliği sistem yöneticisi tarafından kapatılmış."
+    "translation": "BetGo Office müşteri portalı ile etkileşim kurma özelliği sistem yöneticisi tarafından kapatılmış."
   },
   {
     "id": "api.templates.ip_filters_changed.title",
