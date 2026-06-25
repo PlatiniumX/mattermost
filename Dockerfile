@@ -65,7 +65,7 @@ ENV MM_INSTALL_TYPE="docker"
 # Çalışma zamanı + döküman işleme bağımlılıkları
 RUN apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-     ca-certificates media-types mailcap unrtf wv poppler-utils tidy tzdata \
+     ca-certificates curl media-types mailcap unrtf wv poppler-utils tidy tzdata \
   && rm -rf /var/lib/apt/lists/* \
   && groupadd --gid ${PGID} mattermost \
   && useradd --uid ${PUID} --gid ${PGID} --home-dir /mattermost mattermost \
